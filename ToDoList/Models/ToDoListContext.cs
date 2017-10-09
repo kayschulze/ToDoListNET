@@ -10,5 +10,4 @@ namespace ToDoList.Models
             => optionsBuilder
                 .UseMySql(@"Server=localhost;database=todolist;uid=root;pwd=root;");
     }
-    //I AM A COMMENT
 }
