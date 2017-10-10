@@ -9,20 +9,24 @@ namespace ToDoList.Controllers
 	public class ItemsController : Controller
 	{
 		private ToDoListContext db = new ToDoListContext();
+
 		public IActionResult Index()
 		{
 			return View(db.Items.Include(items => items.Category).ToList());
 		}
+
 		public IActionResult Details(int id)
 		{
 			var thisItem = db.Items.FirstOrDefault(items => items.ItemId == id);
 			return View(thisItem);
 		}
+
 		public IActionResult Create()
 		{
 			ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name");
 			return View();
 		}
+
 		[HttpPost]
 		public IActionResult Create(Item item)
 		{
@@ -30,12 +34,14 @@ namespace ToDoList.Controllers
 			db.SaveChanges();
 			return RedirectToAction("Index");
 		}
+
 		public IActionResult Edit(int id)
 		{
-			var thisItem = db.Items.FirstOrDefault(items => items.ItemId == id);
+			var thisItem = db.Items.FirstOrDefault(item => item.ItemId == id);
 			ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name");
 			return View(thisItem);
 		}
+
 		[HttpPost]
 		public IActionResult Edit(Item item)
 		{
@@ -43,11 +49,13 @@ namespace ToDoList.Controllers
 			db.SaveChanges();
 			return RedirectToAction("Index");
 		}
+
 		public ActionResult Delete(int id)
 		{
 			var thisItem = db.Items.FirstOrDefault(items => items.ItemId == id);
 			return View(thisItem);
 		}
+
 		[HttpPost, ActionName("Delete")]
 		public IActionResult DeleteConfirmed(int id)
 		{
