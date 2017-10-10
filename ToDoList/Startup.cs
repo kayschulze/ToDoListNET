@@ -33,12 +33,7 @@ namespace ToDoList
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            
 
             loggerFactory.AddConsole();
 
@@ -46,6 +41,13 @@ namespace ToDoList
             {
                 app.UseDeveloperExceptionPage();
             }
+
+			app.UseMvc(routes =>
+			{
+				routes.MapRoute(
+					name: "default",
+					template: "{controller=Home}/{action=Index}/{id?}");
+			});
 
             app.UseStaticFiles();
 

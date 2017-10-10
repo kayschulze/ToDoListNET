@@ -1,22 +1,13 @@
 ﻿@model ToDoList.Models.Item
 
 @{
-    ViewData["Title"] = "Item - Create";
+    ViewData["Title"] = "Item - Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Create a new item</h2>
+<h2>Item Details</h2>
 <hr />
 
-@using (Html.BeginForm())
-{
-    @Html.LabelFor(model => model.Description)
-    @Html.EditorFor(model => model.Description)
+<p>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)</p>
+<p>@Html.DisplayNameFor(model => model.CategoryId) : @Html.DisplayFor(model => model.CategoryId)</p>
 
-    @Html.LabelFor(model => model.CategoryId)
-    @Html.DropDownList("CategoryId")
-
-    <input type="submit" value="Create" class=
-"btn btn-default" />
-}
-
-@Html.ActionLink("Back to List", "Index")
+<p>@Html.ActionLink("Edit", "Edit", new { id = Model.ItemId }) | @Html.ActionLink("Back to List", "Index")</p>
